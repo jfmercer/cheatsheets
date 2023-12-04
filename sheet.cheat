@@ -1,6 +1,23 @@
-% first cheat
+; pull common vars from env to set default values
+;$ rhost: echo -n "$RHOST"
+;$ lhost: echo -n "$LHOST"
 
-# print something
-echo "My name is <name>!"
+% nmap
 
-$ name: whoami
+# nmap
+sudo nmap -p<ports> -sS -sV -sC -v -oN <rhost>.$(basename $PWD).nmap.txt <rhost>
+$ rhost: echo -n "$RHOST"
+
+# nmap (vuln scripts)
+sudo nmap -p<ports> -sS -sV -sC -v --script=vuln -oN <rhost>.$(basename $PWD).nmap.txt <rhost>
+$ rhost: echo -n "$RHOST"
+
+% rdp
+
+# rdp in high definition
+sudo xfreerdp /u:<username> /p:<password> /v:<rhost> /w:2560 /h:1600 /smart-sizing:2560x1600 /scale:180
+$ rhost: echo -n "$RHOST"
+
+# test default value
+printf "%s" <rhost>
+$ rhost: echo -n "$RHOST"

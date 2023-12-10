@@ -2,6 +2,12 @@
 ;$ rhost: echo -n "$RHOST"
 ;$ lhost: echo -n "$LHOST"
 
+% navi, test
+
+# test default value
+printf "%s" <rhost>
+$ rhost: echo -n "$RHOST"
+
 % nmap
 
 # nmap
@@ -18,6 +24,29 @@ $ rhost: echo -n "$RHOST"
 sudo xfreerdp /u:<username> /p:<password> /v:<rhost> /w:2560 /h:1600 /smart-sizing:2560x1600 /scale:180
 $ rhost: echo -n "$RHOST"
 
-# test default value
-printf "%s" <rhost>
+% smb
+
+# smb share from $PWD
+impacket-smbserver -smb2support share .
+
+# smb login with no password
+smbclient \\\\<rhost>\\<directory> -U <username>
+$ rhost: echo -n "$RHOST"
+
+# smb login with with password
+smbclient \\\\<rhost>\\<directory> -U <username>%<password>
+$ rhost: echo -n "$RHOST"
+
+# smbclient put file
+smbclient //"<rhost>"/<share> -c 'put <file>'
+$ rhost: echo -n "$RHOST"
+
+# smbmap
+smbmap -H <rhost> -u <username> -p <password>
+$ rhost: echo -n "$RHOST"
+
+% sql
+
+# mssql login
+impacket-mssqlclient <username>:<password>@<rhost> -windows-auth
 $ rhost: echo -n "$RHOST"

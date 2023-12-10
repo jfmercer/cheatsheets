@@ -50,3 +50,20 @@ $ rhost: echo -n "$RHOST"
 # mssql login
 impacket-mssqlclient <username>:<password>@<rhost> -windows-auth
 $ rhost: echo -n "$RHOST"
+
+% tmux
+
+# new tmux session
+tmux new -s <name>
+
+# list tmux sessions
+tmux ls
+
+# attach to a session
+tmux a -t <name>
+
+# new tmux session in different directory
+tmux new -d -c <directory> -s <name>
+
+# kill session
+tmux kill-session -t <name>

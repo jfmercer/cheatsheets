@@ -1,0 +1,5 @@
+% sql
+
+# mssql login
+impacket-mssqlclient <username>:<password>@<rhost> -windows-auth
+$ rhost: echo -n "$RHOST"

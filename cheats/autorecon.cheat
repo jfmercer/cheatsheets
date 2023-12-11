@@ -1,0 +1,10 @@
+% autorecon
+
+# default autorecon
+sudo env "PATH=$PATH" autorecon <rhost>
+$ rhost: echo -n "$RHOST"
+
+# autorecon with named ports
+sudo env "PATH=$PATH" autorecon <rhost> --ports T:<ports>
+$ rhost: echo -n "$RHOST"
+$ ports: 22,80,3389

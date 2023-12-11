@@ -1,0 +1,12 @@
+% rdp
+
+# rdp in high definition
+sudo xfreerdp /u:<username> /p:<password> /v:<rhost> /w:2560 /h:1600 /smart-sizing:2560x1600 /scale:180 /cert-ignore /compression /auto-reconnect
+$ rhost: echo -n "$RHOST"
+
+; note that Windows puts the shared drive in a weird place like \\tsclient\kali 
+# rdp with a file mount
+sudo xfreerdp /u:<username> /p:<password> /v:<rhost> /w:2560 /h:1600 /smart-sizing:2560x1600 /scale:180 /cert-ignore /compression /auto-reconnect /drive:<remote_dir_name>,<local_path>
+$ rhost: echo -n "$RHOST"
+$ remote_dir_name: kali
+$ local_path: "$PWD"

@@ -1,0 +1,9 @@
+; pull common vars from env to set default values
+;$ rhost: echo -n "$RHOST"
+;$ lhost: echo -n "$LHOST"
+
+% navi, test
+
+# test default value
+printf "%s" <rhost>
+$ rhost: echo -n "$RHOST"

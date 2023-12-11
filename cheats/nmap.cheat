@@ -1,0 +1,17 @@
+% nmap
+
+# nmap
+sudo nmap -p<ports> -sS -sV -sC -v -oN <rhost>.$(basename $PWD).nmap.txt <rhost>
+$ rhost: echo -n "$RHOST"
+
+# FAST: SYN scan only top 1000 ports
+sudo nmap -sS --top-ports 1000 -T4 <rhost>
+$ rhost: echo -n "$RHOST"
+
+# FAST: SYN scan all ports
+sudo nmap -sS -p- -T4 <rhost>
+$ rhost: echo -n "$RHOST"
+
+# nmap (vuln scripts)
+sudo nmap -p<ports> -sS -sV -sC -v --script=vuln -oN <rhost>.$(basename $PWD).nmap.txt <rhost>
+$ rhost: echo -n "$RHOST"

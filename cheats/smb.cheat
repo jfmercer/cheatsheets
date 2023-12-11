@@ -1,0 +1,20 @@
+% smb
+
+# host a new smb share from $PWD
+impacket-smbserver -smb2support share .
+
+# smb login with no password
+smbclient \\\\<rhost>\\<directory> -U <username>
+$ rhost: echo -n "$RHOST"
+
+# smb login with with password
+smbclient \\\\<rhost>\\<directory> -U <username>%<password>
+$ rhost: echo -n "$RHOST"
+
+# smbclient put file
+smbclient //"<rhost>"/<share> -c 'put <file>'
+$ rhost: echo -n "$RHOST"
+
+# smbmap
+smbmap -H <rhost> -u <username> -p <password>
+$ rhost: echo -n "$RHOST"

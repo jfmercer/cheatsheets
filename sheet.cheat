@@ -8,10 +8,40 @@
 printf "%s" <rhost>
 $ rhost: echo -n "$RHOST"
 
+% autorecon
+
+# default autorecon
+sudo env "PATH=$PATH" autorecon <rhost>
+$ rhost: echo -n "$RHOST"
+
+# autorecon with named ports
+sudo env "PATH=$PATH" autorecon <rhost> --ports T:<ports>
+$ rhost: echo -n "$RHOST"
+$ ports: 22,80,3389
+
+% hashcat
+
+# default hashcat
+hashcat -m <hash_id> <file> <wordlist> --show
+$ wordlist: /usr/share/wordlists/rockyou.txt
+
+# hashcat with a rule
+hashcat -m <hash_id> <file> <wordlist> -r <rule> --show
+$ wordlist: /usr/share/wordlists/rockyou.txt
+$ rule: /usr/share/hashcat/rules/rockyou-30000.rule
+
 % nmap
 
 # nmap
 sudo nmap -p<ports> -sS -sV -sC -v -oN <rhost>.$(basename $PWD).nmap.txt <rhost>
+$ rhost: echo -n "$RHOST"
+
+# FAST: SYN scan only top 1000 ports
+sudo nmap -sS --top-ports 1000 -T4 <rhost>
+$ rhost: echo -n "$RHOST"
+
+# FAST: SYN scan all ports
+sudo nmap -sS -p- -T4 <rhost>
 $ rhost: echo -n "$RHOST"
 
 # nmap (vuln scripts)
@@ -21,12 +51,19 @@ $ rhost: echo -n "$RHOST"
 % rdp
 
 # rdp in high definition
-sudo xfreerdp /u:<username> /p:<password> /v:<rhost> /w:2560 /h:1600 /smart-sizing:2560x1600 /scale:180
+sudo xfreerdp /u:<username> /p:<password> /v:<rhost> /w:2560 /h:1600 /smart-sizing:2560x1600 /scale:180 /cert-ignore /compression /auto-reconnect
 $ rhost: echo -n "$RHOST"
+
+; note that Windows puts the shared drive in a weird place like \\tsclient\kali 
+# rdp with a file mount
+sudo xfreerdp /u:<username> /p:<password> /v:<rhost> /w:2560 /h:1600 /smart-sizing:2560x1600 /scale:180 /cert-ignore /compression /auto-reconnect /drive:<remote_dir_name>,<local_path>
+$ rhost: echo -n "$RHOST"
+$ remote_dir_name: kali
+$ local_path: "$PWD"
 
 % smb
 
-# smb share from $PWD
+# host a new smb share from $PWD
 impacket-smbserver -smb2support share .
 
 # smb login with no password

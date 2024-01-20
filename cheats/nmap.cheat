@@ -1,17 +1,29 @@
 % nmap
 
-# nmap
+# nmap: versions and scripts
 sudo nmap -p<ports> -sS -sV -sC -v -oN <rhost>.$(basename $PWD).nmap.txt <rhost>
 $ rhost: echo -n "$RHOST"
 
-# FAST: SYN scan only top 1000 ports
-sudo nmap -sS --top-ports 1000 -T4 <rhost>
+# FAST: SYN scan only top 1000 ports, skip host discovery (ping)
+sudo nmap -sS -Pn -n --top-ports 1000 -T4 <rhost>
 $ rhost: echo -n "$RHOST"
 
-# FAST: SYN scan all ports
-sudo nmap -sS -p- -T4 <rhost>
+# FAST: SYN scan all ports, skip host discovery (ping)
+sudo nmap -sS -Pn -n -p- -T4 <rhost>
+$ rhost: echo -n "$RHOST"
+
+# SLOW: all against specific ports
+sudo nmap -p- -A -oA all <rhost>
 $ rhost: echo -n "$RHOST"
 
 # nmap (vuln scripts)
 sudo nmap -p<ports> -sS -sV -sC -v --script=vuln -oN <rhost>.$(basename $PWD).nmap.txt <rhost>
+$ rhost: echo -n "$RHOST"
+
+# nmap: all against specific ports
+sudo nmap -p<ports> -A -oA all <rhost>
+$ rhost: echo -n "$RHOST"
+
+# nmap: ippsec
+sudo nmap -sV -sC -oA all <rhost>
 $ rhost: echo -n "$RHOST"

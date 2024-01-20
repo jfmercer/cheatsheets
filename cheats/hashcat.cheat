@@ -1,10 +1,10 @@
 % hashcat
 
 # default hashcat
-hashcat -m <hash_id> <file> <wordlist> --show
+hashcat -m <hashid> <file> <wordlist> --show
 $ wordlist: /usr/share/wordlists/rockyou.txt
 
 # hashcat with a rule
-hashcat -m <hash_id> <file> <wordlist> -r <rule> --show
+hashcat -m <hashid> <file> <wordlist> -r <rule> --show
 $ wordlist: /usr/share/wordlists/rockyou.txt
 $ rule: /usr/share/hashcat/rules/rockyou-30000.rule

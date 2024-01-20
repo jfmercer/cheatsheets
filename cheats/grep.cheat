@@ -1,0 +1,4 @@
+% grep
+
+# grep: exclude a search term
+grep -v <pattern> <filename>

@@ -2,3 +2,6 @@
 
 # grep: exclude a search term
 grep -v <pattern> <filename>
+
+# grep: include lines above and below (context)
+grep -C <number>

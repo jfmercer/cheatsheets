@@ -10,3 +10,6 @@ sudo xfreerdp /u:<username> /p:<password> /v:<rhost> /w:2560 /h:1600 /smart-sizi
 $ rhost: echo -n "$RHOST"
 $ remote_dir_name: kali
 $ local_path: "$PWD"
+
+# rdp on on Windows: MS Terminal Services Client
+mstsc

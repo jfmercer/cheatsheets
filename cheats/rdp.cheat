@@ -4,6 +4,11 @@
 sudo xfreerdp /u:<username> /p:<password> /v:<rhost> /w:2560 /h:1600 /smart-sizing:2560x1600 /scale:180 /cert-ignore /compression /auto-reconnect +clipboard 
 $ rhost: echo -n "$RHOST"
 
+# rdp with AD domain
+sudo xfreerdp /u:<username> /p:<password> /d:<domain> /v:<rhost> /w:2560 /h:1600 /smart-sizing:2560x1600 /scale:180 /cert-ignore /compression /auto-reconnect +clipboard
+$ rhost: echo -n "$RHOST"
+$ domain: corp.com
+
 ; note that Windows puts the shared drive in a weird place like \\tsclient\kali 
 # rdp with a file mount
 sudo xfreerdp /u:<username> /p:<password> /v:<rhost> /w:2560 /h:1600 /smart-sizing:2560x1600 /scale:180 /cert-ignore /compression /auto-reconnect +clipboard /drive:<remote_dir_name>,<local_path>

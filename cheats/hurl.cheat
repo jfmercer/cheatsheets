@@ -1,4 +1,13 @@
 % hurl
 
+# hurl: base64 encode
+hURL -B <string>
+
 # hurl: base64 decode
 hURL -b <base64string>
+
+# hurl: URL encode
+hURL -U <string>
+
+# hurl: URL decode
+hURL -u <string>

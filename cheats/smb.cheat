@@ -18,3 +18,6 @@ $ rhost: echo -n "$RHOST"
 # smbmap
 smbmap -H <rhost> -u <username> -p <password>
 $ rhost: echo -n "$RHOST"
+
+# nbtscan: scan address range, -r adds UDP 137
+sudo nbtscan -r 192.168.50.0/24

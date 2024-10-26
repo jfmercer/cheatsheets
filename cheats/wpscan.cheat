@@ -1,0 +1,5 @@
+% wpscan
+
+# enumerate popular plugins with output file
+wpscan --url <rhost> --enumerate p --plugins-detection aggressive -o wpscan
+$ rhost: echo -n "$RHOST"

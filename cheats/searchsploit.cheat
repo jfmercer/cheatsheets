@@ -1,0 +1,10 @@
+% searchsploit
+
+# search by exploit number
+searchsploit -x <number>
+
+# copy by exploit number (-m is for "mirror")
+searchsploit -m <number>
+
+# update searchsploit
+searchsploit -u

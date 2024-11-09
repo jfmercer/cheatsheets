@@ -1,7 +1,7 @@
 # TODO
 
 - Add curl
-- Add gobuster
+- Add gobuster (and feroxbuster?)
     - Include options for which wordlist to use (small, medium, large)
 - Add fd
 - Add find

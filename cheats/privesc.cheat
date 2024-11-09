@@ -4,7 +4,7 @@
 cp /usr/share/peass/linpeas/linpeas.sh .
 
 # copy winpeas
-cp /usr/share/peass/winpeas/winPEASany.exe .
+cp /usr/share/peass/winpeas/winPEASx64.exe .
 
 # copy linux-exploit-suggester
 cp /usr/share/linux-exploit-suggester/linux-exploit-suggester.sh .

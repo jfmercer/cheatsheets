@@ -1,0 +1,4 @@
+% find
+
+# find: follow symlinks, case-insensitive
+find -L <directory> -iname "*<search>*" 2>/dev/null

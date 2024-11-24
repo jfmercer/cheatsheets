@@ -7,7 +7,6 @@ $ rhost: echo -n "$RHOST"
 # autorecon with named ports
 sudo env "PATH=$PATH" autorecon <rhost> --ports T:<ports>
 $ rhost: echo -n "$RHOST"
-$ ports: 22,80,3389
 
 # autorecon with targets file
 sudo env "PATH=$PATH" autorecon -t <targets>

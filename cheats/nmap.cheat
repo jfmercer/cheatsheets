@@ -27,3 +27,10 @@ $ rhost: echo -n "$RHOST"
 # nmap: ippsec
 sudo nmap -v -sV -sC -oA all <rhost>
 $ rhost: echo -n "$RHOST"
+
+# nmap: list all open ports
+nmap -p- --min-rate=1000 -T4 <rhost> | grep '^[0-9]' | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//
+$ rhost: echo -n "$RHOST"
+
+# nmap: all against all open ports
+nmap -v -A -oA all -p $(nmap -p- --min-rate=1000 -T4 <rhost> | grep '^[0-9]' | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//) <rhost>

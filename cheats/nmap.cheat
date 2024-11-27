@@ -5,7 +5,7 @@ sudo nmap -p <ports> -sS -sV -sC -v -oN <rhost>.$(basename $PWD).nmap.txt <rhost
 $ rhost: echo -n "$RHOST"
 
 # FAST: SYN scan only top 1000 ports, skip host discovery (ping)
-sudo nmap -v -sS -Pn -n --top-ports 1000 -T4 <rhost>
+sudo nmap -v -sS -Pn -n --top-ports 1000 -T4 -oN fast.nmap <rhost>
 $ rhost: echo -n "$RHOST"
 
 # FAST: SYN scan all ports, skip host discovery (ping)
@@ -29,8 +29,12 @@ sudo nmap -v -sV -sC -oA all <rhost>
 $ rhost: echo -n "$RHOST"
 
 # nmap: list all open ports
-nmap -p- --min-rate=1000 -T4 <rhost> | grep '^[0-9]' | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//
+sudo nmap -p- --min-rate=1000 -T4 <rhost> | grep '^[0-9]' | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//
 $ rhost: echo -n "$RHOST"
 
 # nmap: all against all open ports
-nmap -v -A -oA all -p $(nmap -p- --min-rate=1000 -T4 <rhost> | grep '^[0-9]' | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//) <rhost>
+sudo nmap -v -A -oA all -p $(sudo nmap -p- --min-rate=1000 -T4 <rhost> | grep '^[0-9]' | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//) <rhost>
+
+# nmap: udp top 100
+sudo nmap -v -sU --top-ports 100 -oN udp-top-100.nmap <rhost>
+$ rhost: echo -n "$RHOST"

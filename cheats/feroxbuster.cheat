@@ -1,0 +1,16 @@
+% feroxbuster
+
+# feroxbuster: dirb small list
+feroxbuster -u "http://<rhost>:<port>" -t 10 -w /usr/share/dirb/wordlists/small.txt -v --insecure --redirects -o feroxbuster-port-<port>-dirb-small.txt
+$ rhost: echo -n "$RHOST"
+$ <port>
+
+# feroxbuster: dirbuster small list
+feroxbuster -u "http://<rhost>:<port>" -t 10 -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -v --insecure --redirects -o feroxbuster-port-<port>-dirbuster-small.txt
+$ rhost: echo -n "$RHOST"
+$ <port>
+
+# feroxbuster: dirbuster medium list
+feroxbuster -u "http://<rhost>:<port>" -t 10 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -v --insecure --redirects -o feroxbuster-port-<port>-dirbuster-medium.txt
+$ rhost: echo -n "$RHOST"
+$ <port>

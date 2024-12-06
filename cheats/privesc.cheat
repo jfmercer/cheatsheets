@@ -1,0 +1,19 @@
+% privesc - copy scripts
+
+# copy linpeas
+cp /usr/share/peass/linpeas/linpeas.sh .
+
+# copy winpeas
+cp /usr/share/peass/winpeas/winPEASx64.exe .
+
+# copy linux-exploit-suggester
+cp /usr/share/linux-exploit-suggester/linux-exploit-suggester.sh .
+
+# copy linenum
+cp /usr/share/linenum/linenum.sh .
+
+# copy lse
+cp /usr/share/linux-smart-enumeration/lse.sh .
+
+# copy windows-exploit-suggester
+cp /usr/share/windows-exploit-suggester/windows-exploit-suggester.py .

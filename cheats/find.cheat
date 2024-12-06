@@ -1,0 +1,7 @@
+% find
+
+# find: follow symlinks, case-insensitive
+find -L <directory> -iname "*<search>*" 2>/dev/null
+
+# Find files which a group has rights over
+find / -group <group> 2>/dev/null

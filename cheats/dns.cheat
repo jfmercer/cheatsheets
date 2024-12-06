@@ -1,0 +1,24 @@
+% dns
+
+# host: search A records
+host <domain>
+
+# host: search MX records
+host -t mx <domain>
+
+# host: search TXT records
+host -t txt domain>
+
+# dnsrecon: standard scan
+dnsrecon -d <domain> -t std
+# dnsrecon: subdomain brute forcing
+dnsrecon -d <domain> -D <wordlist> -t brt
+
+# DNSEnum - another popular DNS enum tool
+dnsenum <domain>
+
+# nslookup (Windows):subdomain search
+nslookup <subdomain>.<domain>
+
+# nslookup (Windows):query specific DNS server for TXT records
+nslookup -type=TXT <subdomain>.<domain> <dns-server>

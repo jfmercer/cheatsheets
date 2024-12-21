@@ -1,0 +1,17 @@
+% ldap
+
+# anonymous simple ldapsearch
+ldapsearch -H ldap://<rhost> -x -b "dc=<domain>,dc=<tld>"
+$ rhost: echo -n "$RHOST"
+
+# anonymous simple ldapsearch for persons
+ldapsearch -H ldap://<rhost> -x -b "dc=<domain>,dc=<tld>" "(objectClass=person)"
+$ rhost: echo -n "$RHOST"
+
+# authenticated ldapsearch
+ldapsearch -H ldap://<rhost> -D "cn=<username>,dc=<domain>,dc=<tld>" -w <password> -x -b "dc=<domain>,dc=<tld>"
+$ rhost: echo -n "$RHOST"
+
+# authenticated ldapsearch for persons
+ldapsearch -H ldap://<rhost> -D "cn=<username>,dc=<domain>,dc=<tld>" -w <password> -x -b "dc=<domain>,dc=<tld>" "(objectClass=person)"
+$ rhost: echo -n "$RHOST"

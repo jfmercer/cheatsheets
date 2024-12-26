@@ -15,3 +15,6 @@ $ rhost: echo -n "$RHOST"
 # authenticated ldapsearch for persons
 ldapsearch -H ldap://<rhost> -D "cn=<username>,dc=<domain>,dc=<tld>" -w <password> -x -b "dc=<domain>,dc=<tld>" "(objectClass=person)"
 $ rhost: echo -n "$RHOST"
+
+# full users search with go-windapsearch
+windapsearch --dc "$RHOST" -m users --full

